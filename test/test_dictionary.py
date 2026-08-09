@@ -49,13 +49,9 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "hello")
         self.assertEqual(result.phonetic, "həˈləʊ")
         self.assertEqual(result.audio, "https://example.com/hello.mp3")
-        self.assertEqual(
-            result.meanings,
-            ["exclamation: Used as a greeting.", "noun: An utterance of hello."],
-        )
-        self.assertEqual(
-            result.example, ["Hello, how are you?", "She gave me a warm hello."]
-        )
+        self.assertEqual(result.meaning, "Used as a greeting.")
+        self.assertEqual(result.example, "Hello, how are you?")
+        self.assertEqual(result.part_of_speech, "noun")
 
     def test_lookup_word_not_found(self):
         mock_response = Mock()
@@ -100,8 +96,8 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "test")
         self.assertEqual(result.phonetic, "/test/")
         self.assertEqual(result.audio, "")
-        self.assertEqual(result.meanings, [])
-        self.assertEqual(result.example, [])
+        self.assertEqual(result.meaning, "")
+        self.assertEqual(result.example, "")
 
     def test_lookup_missing_audio_returns_empty_string(self):
         mock_api_response = [
@@ -129,8 +125,8 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "quiet")
         self.assertEqual(result.phonetic, "/ˈkwaɪət/")
         self.assertEqual(result.audio, "")
-        self.assertEqual(result.meanings, ["adjective: Making little or no noise."])
-        self.assertEqual(result.example, [])
+        self.assertEqual(result.meaning, "Making little or no noise.")
+        self.assertEqual(result.example, "")
 
     def test_lookup_definition_without_part_of_speech(self):
         mock_api_response = [
@@ -162,8 +158,9 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "simple")
         self.assertEqual(result.phonetic, "")
         self.assertEqual(result.audio, "")
-        self.assertEqual(result.meanings, ["Easy to understand."])
-        self.assertEqual(result.example, ["This is a simple example."])
+        self.assertEqual(result.part_of_speech, "")
+        self.assertEqual(result.meaning, "Easy to understand.")
+        self.assertEqual(result.example, "This is a simple example.")
 
     def test_lookup_uses_input_word_if_word_missing(self):
         mock_api_response = [{"phonetic": "", "phonetics": [], "meanings": []}]
@@ -179,8 +176,8 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "fallback")
         self.assertEqual(result.phonetic, "")
         self.assertEqual(result.audio, "")
-        self.assertEqual(result.meanings, [])
-        self.assertEqual(result.example, [])
+        self.assertEqual(result.meaning, "")
+        self.assertEqual(result.example, "")
 
     def test_lookup_multiple_phonetics_uses_first_available_audio(self):
         mock_api_response = [
@@ -206,8 +203,8 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "hello")
         self.assertEqual(result.phonetic, "/həˈləʊ/")
         self.assertEqual(result.audio, "https://example.com/audio-us.mp3")
-        self.assertEqual(result.meanings, [])
-        self.assertEqual(result.example, [])
+        self.assertEqual(result.meaning, "")
+        self.assertEqual(result.example, "")
 
     def test_lookup_multiple_definitions(self):
         mock_api_response = [
@@ -245,12 +242,11 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.phonetic, "/rʌn/")
         self.assertEqual(result.audio, "")
         self.assertEqual(
-            result.meanings,
-            ["verb: Move at a speed faster than a walk.", "verb: Manage or operate."],
+            result.meaning,
+            "verb: Move at a speed faster than a walk.",
+            "verb: Manage or operate.",
         )
-        self.assertEqual(
-            result.example, ["I run every morning.", "She runs a company."]
-        )
+        self.assertEqual(result.example, "I run every morning.")
 
     def test_lookup_definition_without_example(self):
         mock_api_response = [
@@ -278,8 +274,8 @@ class TestLookup(unittest.TestCase):
         self.assertEqual(result.word, "book")
         self.assertEqual(result.phonetic, "/bʊk/")
         self.assertEqual(result.audio, "")
-        self.assertEqual(result.meanings, ["noun: A written or printed work."])
-        self.assertEqual(result.example, [])
+        self.assertEqual(result.meaning, "noun: A written or printed work.")
+        self.assertEqual(result.example, "")
 
     def test_lookup_calls_correct_api_url(self):
         mock_response = Mock()
