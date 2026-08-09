@@ -27,9 +27,10 @@ def lookup(input_word: str) -> Word | None:
 
     word = entry.get("word", input_word)
     phonetic = entry.get("phonetic", "")
+    part_of_speech = ""
     audio = ""
-    meanings = []
-    examples = []
+    meaning = ""
+    example = ""
 
     # Get phonetic and audio
     for phonetic_item in entry.get("phonetics", []):
@@ -39,27 +40,31 @@ def lookup(input_word: str) -> Word | None:
         if not audio and phonetic_item.get("audio"):
             audio = phonetic_item["audio"]
 
+        if phonetic and audio:
+            break
+
     # Get meanings and examples
     for meaning_item in entry.get("meanings", []):
         part_of_speech = meaning_item.get("partOfSpeech", "")
 
         for definition_item in meaning_item.get("definitions", []):
             definition = definition_item.get("definition")
-            example = definition_item.get("example")
+            example_item = definition_item.get("example")
+
+            if example_item:
+                example = example_item
 
             if definition:
-                if part_of_speech:
-                    meanings.append(f"{part_of_speech}: {definition}")
-                else:
-                    meanings.append(definition)
+                meaning = definition
 
-            if example:
-                examples.append(example)
+            if example and meaning:
+                break
 
     return Word(
         word=word,
         phonetic=phonetic,
         audio=audio,
-        meanings=meanings,
-        example=examples,
+        meaning=meaning,
+        example=example,
+        part_of_speech=part_of_speech,
     )
