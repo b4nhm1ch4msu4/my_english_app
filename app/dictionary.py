@@ -44,7 +44,11 @@ def lookup(input_word: str) -> Word | None:
             break
 
     # Get meanings and examples
-    for meaning_item in entry.get("meanings", []):
+    meanings = entry.get("meanings", [])
+    meaning_count = len(meanings)
+    i = 0
+    while example == "" and meaning == "" and i < meaning_count:
+        meaning_item = meanings[i]
         part_of_speech = meaning_item.get("partOfSpeech", "")
 
         for definition_item in meaning_item.get("definitions", []):
@@ -59,6 +63,7 @@ def lookup(input_word: str) -> Word | None:
 
             if example and meaning:
                 break
+        i = i + 1
 
     return Word(
         word=word,
