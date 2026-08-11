@@ -13,13 +13,36 @@ Week	Goal
 ## Week 2: Save words into SQLite
 
 - [x] Build word model
-- [ ] Create database
-- [ ] Insert new word to database
-- [ ] View word list
-- [ ] Remove a word
-- [ ] Get a word from list
+- [x] Create database
+- [x] Insert new word to database
+- [x] View word list
+- [x] Remove a word
+- [x] Get a word from list
+- [x] add test cases
+- [x] add logging system
 
-> [!NOTE]
-> resolve moduln 
+## Week 3: Implement the review screen
+
+### The SuperMemo-2(SM-2) Algorithm
+
+- Which words need to learn today?
+- When should re-learn this word ?
+
+### UI
+
+#### Get user input
+
+- add new word
+- get today list words need to learn
+- difficulty : easy/good/hard/again
+
+#### Show output
+
+- show options to choose : add new words/ learn today words
+- show single word when learning to choose difficulty.
 
 
+- [ ] Create SM-2 algo
+- [ ] How to save learning info to a single word ?
+- [ ] Add learning info to word in database
+- [ ] 
