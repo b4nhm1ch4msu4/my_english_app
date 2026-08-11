@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 from app.dictionary import lookup
+from app.logger import setup_logging
 from app.models import Word
 
 
