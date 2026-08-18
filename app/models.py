@@ -29,3 +29,7 @@ class ReviewStatus(sm2_algo):
     def update(self, q: Quality):
         super().update(q)
         self.next_review += timedelta(days=self.interval)
+
+
+def default_review_status() -> ReviewStatus:
+    return ReviewStatus(0, 2.5, 0, next_review=date.today() + timedelta(days=1))
