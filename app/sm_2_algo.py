@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from enum import Enum
 
 
@@ -32,7 +33,7 @@ class sm2_algo:
             if self.repetitions == 0:
                 self.interval = 1
             elif self.repetitions == 1:
-                self.interval = 6
+                self.interval = 3
             else:
                 self.interval = int(self.interval * self.ease_factor)
 
@@ -43,8 +44,6 @@ class sm2_algo:
             new_ease_factor = (
                 self.ease_factor
                 + 0.1
-                - (upper_limit - q.value)
-                * (0.075 + (upper_limit - q.value) * 0.025)
+                - (upper_limit - q.value) * (0.075 + (upper_limit - q.value) * 0.025)
             )
-            if new_ease_factor < 1.3:
-                self.ease_factor = 1.3
+            self.ease_factor = new_ease_factor if new_ease_factor >= 1.3 else 1.3
