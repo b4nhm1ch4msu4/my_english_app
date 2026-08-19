@@ -181,6 +181,9 @@ def get_words_list_by_date(conn: sqlite3.Connection, date: date):
             words_list.append((word_obj, review_status))
     return words_list
 
+def update_review_status(conn, word: Word, new_review_status: ReviewStatus):
+    # TODO: update review status of word after learning
+    pass
 
 def remove_word(conn: sqlite3.Connection, word: str):
     logger.info(f"Remove {word} in database")

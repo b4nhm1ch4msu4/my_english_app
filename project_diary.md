@@ -77,16 +77,16 @@ Choose an option:
 ```
 
 TODO:
-- [ ] 1. Learn today
-- [ ] 2. Add new word
-- [ ] 3. My vocabulary
+- [x] 1. Learn today
+- [x] 2. Add new word
+- [x] 3. My vocabulary
 - [ ] 4. Search word
 - [ ] 5. Delete word
 - [ ] 6. Exit
 
 #### 1. Learn today
 
-##### start message
+##### start message (done)
 
 ```
 Today's review
@@ -123,7 +123,7 @@ Press ENTER to start...
 │                                      │
 │              abandon                 │
 │                                      │
-│           /əˈbændən/                │
+│           /əˈbændən/                 │
 │                                      │
 │  verb                                │
 │                                      │
