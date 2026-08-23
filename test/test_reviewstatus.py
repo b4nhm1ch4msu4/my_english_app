@@ -1,7 +1,7 @@
 import unittest
 from datetime import date, timedelta
 
-from app.sm_2_algo import Quality, sm2_algo
+from app.sm_2_algo import Quality, SM2Algorithm
 from app.models import ReviewStatus
 
 
@@ -9,7 +9,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_initial_state(self):
         status = ReviewStatus(
-            rep=0,
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
             next_review=date(2026, 8, 18),
@@ -22,7 +22,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_good_first_review(self):
         status = ReviewStatus(
-            rep=0,
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
             next_review=date(2026, 8, 18),
@@ -43,7 +43,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_good_second_review(self):
         status = ReviewStatus(
-            rep=1,
+            repetitions=1,
             ease_factor=2.5,
             interval=1,
             next_review=date(2026, 8, 18),
@@ -62,7 +62,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_good_later_review(self):
         status = ReviewStatus(
-            rep=2,
+            repetitions=2,
             ease_factor=2.5,
             interval=3,
             next_review=date(2026, 8, 18),
@@ -81,7 +81,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_easy_review(self):
         status = ReviewStatus(
-            rep=2,
+            repetitions=2,
             ease_factor=2.5,
             interval=3,
             next_review=date(2026, 8, 18),
@@ -100,7 +100,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_again_resets_review(self):
         status = ReviewStatus(
-            rep=5,
+            repetitions=5,
             ease_factor=2.5,
             interval=20,
             next_review=date(2026, 8, 18),
@@ -120,7 +120,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_hard_resets_review(self):
         status = ReviewStatus(
-            rep=5,
+            repetitions=5,
             ease_factor=2.5,
             interval=20,
             next_review=date(2026, 8, 18),
@@ -139,7 +139,7 @@ class TestReviewStatus(unittest.TestCase):
 
     def test_multiple_reviews(self):
         status = ReviewStatus(
-            rep=0,
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
             next_review=date(2026, 8, 18),

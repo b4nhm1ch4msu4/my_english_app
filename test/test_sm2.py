@@ -1,13 +1,13 @@
 import unittest
 
-from app.sm_2_algo import Quality, sm2_algo
+from app.sm_2_algo import Quality, SM2Algorithm
 
 
 class TestSM2Algo(unittest.TestCase):
 
     def test_initial_state(self):
-        sm2 = sm2_algo(
-            rep=0,
+        sm2 = SM2Algorithm(
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
         )
@@ -21,8 +21,8 @@ class TestSM2Algo(unittest.TestCase):
     # --------------------------------------------------
 
     def test_again(self):
-        sm2 = sm2_algo(
-            rep=5,
+        sm2 = SM2Algorithm(
+            repetitions=5,
             ease_factor=2.6,
             interval=20,
         )
@@ -34,8 +34,8 @@ class TestSM2Algo(unittest.TestCase):
         self.assertEqual(sm2.ease_factor, 2.6)
 
     def test_hard(self):
-        sm2 = sm2_algo(
-            rep=5,
+        sm2 = SM2Algorithm(
+            repetitions=5,
             ease_factor=2.7,
             interval=20,
         )
@@ -51,8 +51,8 @@ class TestSM2Algo(unittest.TestCase):
     # --------------------------------------------------
 
     def test_good_first_review(self):
-        sm2 = sm2_algo(
-            rep=0,
+        sm2 = SM2Algorithm(
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
         )
@@ -64,8 +64,8 @@ class TestSM2Algo(unittest.TestCase):
         self.assertAlmostEqual(sm2.ease_factor, 2.5)
 
     def test_good_second_review(self):
-        sm2 = sm2_algo(
-            rep=1,
+        sm2 = SM2Algorithm(
+            repetitions=1,
             ease_factor=2.5,
             interval=1,
         )
@@ -77,8 +77,8 @@ class TestSM2Algo(unittest.TestCase):
         self.assertAlmostEqual(sm2.ease_factor, 2.5)
 
     def test_good_later_review(self):
-        sm2 = sm2_algo(
-            rep=2,
+        sm2 = SM2Algorithm(
+            repetitions=2,
             ease_factor=2.5,
             interval=3,
         )
@@ -90,8 +90,8 @@ class TestSM2Algo(unittest.TestCase):
         self.assertAlmostEqual(sm2.ease_factor, 2.5)
 
     def test_easy_increases_ease_factor(self):
-        sm2 = sm2_algo(
-            rep=2,
+        sm2 = SM2Algorithm(
+            repetitions=2,
             ease_factor=2.5,
             interval=6,
         )
@@ -107,8 +107,8 @@ class TestSM2Algo(unittest.TestCase):
     # --------------------------------------------------
 
     def test_ease_factor_cannot_go_below_1_3(self):
-        sm2 = sm2_algo(
-            rep=2,
+        sm2 = SM2Algorithm(
+            repetitions=2,
             ease_factor=1.3,
             interval=6,
         )
@@ -123,8 +123,8 @@ class TestSM2Algo(unittest.TestCase):
     # --------------------------------------------------
 
     def test_multiple_reviews(self):
-        sm2 = sm2_algo(
-            rep=0,
+        sm2 = SM2Algorithm(
+            repetitions=0,
             ease_factor=2.5,
             interval=0,
         )
@@ -152,8 +152,8 @@ class TestSM2Algo(unittest.TestCase):
     # --------------------------------------------------
 
     def test_failure_resets_repetitions(self):
-        sm2 = sm2_algo(
-            rep=5,
+        sm2 = SM2Algorithm(
+            repetitions=5,
             ease_factor=2.5,
             interval=20,
         )

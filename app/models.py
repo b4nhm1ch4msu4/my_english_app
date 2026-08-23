@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import date, timedelta
-from app.sm_2_algo import sm2_algo, Quality
+from app.sm_2_algo import SM2Algorithm, Quality
 
 
 @dataclass
@@ -14,16 +14,16 @@ class Word:
 
 
 @dataclass
-class ReviewStatus(sm2_algo):
+class ReviewStatus(SM2Algorithm):
     repetitions: int
     ease_factor: float
     interval: int
     next_review: date
 
     def __init__(
-        self, rep: int, ease_factor: float, interval: int, next_review: date
+        self, repetitions: int, ease_factor: float, interval: int, next_review: date
     ) -> None:
-        super().__init__(rep, ease_factor, interval)
+        super().__init__(repetitions, ease_factor, interval)
         self.next_review = next_review
 
     def update(self, q: Quality):

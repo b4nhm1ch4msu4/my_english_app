@@ -116,7 +116,7 @@ def get_word(conn: sqlite3.Connection, word: str):
         )
 
         review_status = ReviewStatus(
-            rep=row["repetitions"],
+            repetitions=row["repetitions"],
             ease_factor=row["ease_factor"],
             interval=row["interval"],
             next_review=date.fromisoformat(row["next_review"]),
@@ -177,7 +177,7 @@ def get_words_list_by_date(conn: sqlite3.Connection, date: date):
             )
 
             review_status = ReviewStatus(
-                rep=row["repetitions"],
+                repetitions=row["repetitions"],
                 ease_factor=row["ease_factor"],
                 interval=row["interval"],
                 next_review=date.fromisoformat(row["next_review"]),

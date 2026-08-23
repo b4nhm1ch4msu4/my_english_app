@@ -9,9 +9,9 @@ class Quality(Enum):
     Easy = 3
 
 
-class sm2_algo:
-    def __init__(self, rep: int, ease_factor: float, interval: int) -> None:
-        self.repetitions = rep
+class SM2Algorithm:
+    def __init__(self, repetitions: int, ease_factor: float, interval: int) -> None:
+        self.repetitions = repetitions
         self.ease_factor = ease_factor
         self.interval = interval
 
