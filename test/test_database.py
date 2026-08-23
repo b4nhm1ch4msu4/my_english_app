@@ -131,9 +131,10 @@ class TestDatabase(unittest.TestCase):
         self.assertEqual(review_result, review_status)
 
     def test_get_word_not_found(self):
-        result = get_word(self.conn, "hello")
+        w, r = get_word(self.conn, "hello")
 
-        self.assertIsNone(result)
+        self.assertIsNone(w)
+        self.assertIsNone(r)
 
     # --------------------------------------------------
     # get_word_list
@@ -176,9 +177,10 @@ class TestDatabase(unittest.TestCase):
 
         remove_word(self.conn, "hello")
 
-        result = get_word(self.conn, "hello")
+        w, r = get_word(self.conn, "hello")
 
-        self.assertIsNone(result)
+        self.assertIsNone(w)
+        self.assertIsNone(r)
 
     def test_remove_word_not_found(self):
         # The function currently only prints an error.
@@ -245,7 +247,9 @@ class TestDatabase(unittest.TestCase):
         word_list = get_words_list_by_date(
             self.conn, date=date.today() + timedelta(days=3)
         )
-        self.assertListEqual(word_list, [(word1,review_status_1),(word2,review_status_2)])
+        self.assertListEqual(
+            word_list, [(word1, review_status_1), (word2, review_status_2)]
+        )
 
 
 if __name__ == "__main__":

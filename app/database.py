@@ -5,7 +5,7 @@ from dataclasses import asdict
 from app.logger import setup_logging
 from app.models import ReviewStatus, Word
 from app.dictionary import lookup
-from app.config import DB_TABLE_NAME
+from app.config import DB_TABLE_NAME,DB_PATH
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ def get_connection(db_path):
 
 def add_new_word(conn: sqlite3.Connection, word: Word, review_status: ReviewStatus):
     logger.info(f"Add '{word.word}' to database")
-    w = get_word(conn, word.word)
+    w,_ = get_word(conn, word.word)
     if w is None:
         word_info_dic = asdict(word) | asdict(review_status)
         logger.info(f"'{word.word}' not exist in database, create new one")
@@ -123,7 +123,7 @@ def get_word(conn: sqlite3.Connection, word: str):
         )
         return word_obj, review_status
     logger.warning(f"NOT FOUND '{word}' in database")
-    return None
+    return None,None
 
 
 def get_word_list(conn: sqlite3.Connection):
