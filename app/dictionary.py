@@ -5,6 +5,7 @@ import json
 
 logger = logging.getLogger(__name__)
 
+
 def lookup(input_word: str) -> Word | None:
     """
     Look up a word using the Free Dictionary API
@@ -19,7 +20,9 @@ def lookup(input_word: str) -> Word | None:
     response = requests.get(url, timeout=10)
 
     if response.status_code != 200:
-        logger.warning(f"Get request from {url} fail with status code: {response.status_code}.")
+        logger.warning(
+            f"Get request from {url} fail with status code: {response.status_code}."
+        )
         return None
 
     data = response.json()

@@ -10,7 +10,8 @@ from app.tui.menu import (
     search_word_opt,
     clear_screen
 )
-from app.database import add_new_word, get_word_list, init_db, DB_PATH, DB_TABLE_NAME
+from app.database import init_db
+from app.config import DB_PATH
 
 
 def main():

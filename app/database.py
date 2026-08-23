@@ -5,9 +5,7 @@ from dataclasses import asdict
 from app.logger import setup_logging
 from app.models import ReviewStatus, Word
 from app.dictionary import lookup
-
-DB_PATH = "data/vocabulary.db"
-DB_TABLE_NAME = "vocabulary"
+from app.config import DB_TABLE_NAME
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +31,12 @@ def init_db(db_path: str):
     """)
     conn.commit()
     conn.close()
+
+
+def get_connection(db_path):
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 def add_new_word(conn: sqlite3.Connection, word: Word, review_status: ReviewStatus):
@@ -181,9 +185,11 @@ def get_words_list_by_date(conn: sqlite3.Connection, date: date):
             words_list.append((word_obj, review_status))
     return words_list
 
+
 def update_review_status(conn, word: Word, new_review_status: ReviewStatus):
     # TODO: update review status of word after learning
     pass
+
 
 def remove_word(conn: sqlite3.Connection, word: str):
     logger.info(f"Remove {word} in database")

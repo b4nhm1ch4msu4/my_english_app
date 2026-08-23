@@ -12,7 +12,9 @@ from app.database import (
     get_word_list,
     remove_word,
 )
+
 from app.models import ReviewStatus, Word
+from app.config import DB_PATH, DB_TABLE_NAME
 
 
 class TestDatabase(unittest.TestCase):
