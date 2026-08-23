@@ -161,7 +161,7 @@ def get_words_list_by_date(conn: sqlite3.Connection, date: date):
             ease_factor,
             interval,
             next_review
-        FROM {DB_TABLE_NAME} WHERE next_review = ?
+        FROM {DB_TABLE_NAME} WHERE next_review <= ?
         """,
         (date,),
     )

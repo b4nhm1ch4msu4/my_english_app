@@ -245,7 +245,7 @@ class TestDatabase(unittest.TestCase):
         word_list = get_words_list_by_date(
             self.conn, date=date.today() + timedelta(days=3)
         )
-        self.assertListEqual(word_list, [])
+        self.assertListEqual(word_list, [(word1,review_status_1),(word2,review_status_2)])
 
 
 if __name__ == "__main__":
