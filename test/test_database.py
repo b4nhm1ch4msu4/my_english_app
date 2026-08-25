@@ -10,6 +10,7 @@ from app.database import (
     add_new_word,
     get_word,
     get_word_list,
+    update_review_status,
     remove_word,
 )
 
@@ -250,6 +251,19 @@ class TestDatabase(unittest.TestCase):
         self.assertListEqual(
             word_list, [(word1, review_status_1), (word2, review_status_2)]
         )
+
+    def test_update_review_status(self):
+        word = self.create_word()
+        review_status = self.create_review_state()
+
+        result = add_new_word(self.conn, word, review_status)
+
+        new_review_status = ReviewStatus(1, 2.5, 3, date.today() + timedelta(days=6))
+        update_review_status(self.conn, word, new_review_status)
+
+        return_word, return_review_status = get_word(self.conn, word.word)
+        self.assertEqual(return_word, word)
+        self.assertEqual(return_review_status, new_review_status)
 
 
 if __name__ == "__main__":

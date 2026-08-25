@@ -76,13 +76,10 @@ app/
 Choose an option:
 ```
 
-TODO:
 - [x] 1. Learn today
 - [x] 2. Add new word
 - [x] 3. My vocabulary
-- [ ] 4. Search word
-- [ ] 5. Delete word
-- [ ] 6. Exit
+- [x] 6. Exit
 
 #### 1. Learn today
 
@@ -322,3 +319,23 @@ Not saved.
                      Main Menu
 ```
 
+
+## TODO: Optionasl
+
+### better TUI with external lib
+
+- [ ] Curses [Curses](https://www.youtube.com/watch?v=VzhZ1nTeAsA) 
+
+### menu options
+
+- [ ] 4. Search word
+- [ ] 5. Delete word
+
+
+### cover edge case in update new review status func
+
+- [ ] when word == None
+- [ ] when new_review_status == None
+- [ ] return True,False status
+
+=> keep origin review_status

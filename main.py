@@ -10,14 +10,14 @@ from app.tui.menu import (
     search_word_opt,
     clear_screen
 )
-from app.database import init_db
+from app.database import get_connection, init_db
 from app.config import DB_PATH
 
 
 def main():
     setup_logging()
     init_db(DB_PATH)
-    conn = sqlite3.connect(DB_PATH)
+    conn = get_connection(DB_PATH)
     try:
         while True:
             clear_screen()
