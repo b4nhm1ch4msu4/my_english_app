@@ -5,6 +5,7 @@ from app.database import (
     get_word_list,
     get_words_list_by_date,
     remove_word,
+    update_review_status,
 )
 from app.models import Word, default_review_status, Quality
 
@@ -25,9 +26,9 @@ def show_main_menu():
 
 def learn_today_opt(conn):
     print()
-    print("#"*40)
+    print("#" * 40)
     print("Learn today")
-    print("#"*40)
+    print("#" * 40)
     print()
 
     words_list = get_words_list_by_date(conn, date.today())
@@ -40,9 +41,9 @@ def learn_today_opt(conn):
 
 def add_word_opt(conn):
     print()
-    print("#"*40)
+    print("#" * 40)
     print("Add new word")
-    print("#"*40)
+    print("#" * 40)
     print()
 
     word = input("Enter word: ").strip()
@@ -78,9 +79,9 @@ def add_word_opt(conn):
 
 def vocabulary_opt(conn):
     print()
-    print("#"*40)
+    print("#" * 40)
     print("My vocabulary")
-    print("#"*40)
+    print("#" * 40)
     print()
 
     word_list = get_word_list(conn)
@@ -93,9 +94,9 @@ def vocabulary_opt(conn):
 
 def search_word_opt():
     print()
-    print("#"*40)
+    print("#" * 40)
     print("Search word")
-    print("#"*40)
+    print("#" * 40)
     print()
 
     print("Not implemented yet.")
@@ -141,11 +142,11 @@ def get_word_review_quality():
 
 def review_words_list(conn, words_list):
     word_count = len(words_list)
-    for i in range(1, word_count + 1):
+    for i in range(word_count):
         w = words_list[i][0]
         r = words_list[i][1]
 
-        print(f"Word {i}/{word_count}.")
+        print(f"Word {i+1}/{word_count}.")
         print()
 
         print(w.meaning)
@@ -155,13 +156,14 @@ def review_words_list(conn, words_list):
         show_word_info(w)
         q = get_word_review_quality()
         r.update(q)
-        # TODO: update word review status on database instead of remove then add new one
-        remove_word(conn, w.word)
-        add_new_word(conn, w, r)
+        update_review_status(conn, w, r)
+        # remove_word(conn, w.word)
+        # add_new_word(conn, w, r)
 
 
 def end_learn_message():
     print("Learned all words. Congratulations")
+
 
 def clear_screen():
     print("\033[2J\033[H", end="", flush=True)
